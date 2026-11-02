@@ -10,7 +10,7 @@
                         <input type="text" name="text" class="form-control" placeholder="Search">
                         <button type="submit">
                             <i class="ti-search"></i>
-                        </button>  
+                        </button>
                     </form>
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <ul>
                 <li class="search"><a href="#"><i class="ti-search"></i></a></li>
             </ul>
-        </div>        
+        </div>
         <!-- End Atribute Navigation -->
 
         <!-- Start Header Navigation -->
@@ -45,7 +45,7 @@
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 <li><a href="/web">Home</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Profil</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profil</a>
                     <ul class="dropdown-menu">
                         <li><a href="/web/profil">BPVP Sorong</a></li>
                         <li><a href="/web/sejarah">Sejarah</a></li>
@@ -53,25 +53,15 @@
                         <li><a href="/web/struktur-organisasi">Struktur Organisasi</a></li>
                     </ul>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pelatihan</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pelatihan</a>
                     <ul class="dropdown-menu">
-                        <li><a href="/web/teknik-las">Teknik Las</a></li>
-                        <li><a href="/web/teknik-listrik">Teknik Listrik</a></li>
-                        <li><a href="/web/teknik-otomotif">Teknik Otomotif</a></li>
-                        <li><a href="/web/teknik-manufaktur">Teknik Manufaktur</a></li>
-                        <li><a href="/web/teknik-elektronika">Teknik Elektronika</a></li>
-                        <li><a href="/web/kejuruan-tik">Kejuruan TIK</a></li>
-                        <li><a href="/web/kejuruan-processing">Kejuruan Processing</a></li>
-                        <li><a href="/web/kejuruan-pariwisata">Kejuruan Pariwisata</a></li>
-                        <li><a href="/web/kejuruan-bangunan">Kejuruan Bangunan</a></li>
-                        <li><a href="/web/bisnis-dan-manajemen">Bisnis dan Manajemen</a></li>
-                        <li><a href="/web/fashion-technology">Fashion Technology</a></li>
-                        <li><a href="/web/tata-kecantikan">Tata Kecantikan</a></li>
-                        <li><a href="/web/refrigration">Refrigration</a></li>
+                        @foreach ($navKejuruan as $item)
+                            <li><a href="{{ route('kejuruan.show', ['slug' => $item->slug]) }}">{{ $item->nama }}</a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Layanan</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Layanan</a>
                     <ul class="dropdown-menu">
                         <li><a href="/web/sertifikasi-lsp">Sertifikasi LSP</a></li>
                         <li><a href="/web/kios-siap-kerja">Kios Siap Kerja</a></li>
@@ -79,7 +69,7 @@
                         <li><a href="/web/sistem-manajemen-mutu">Manajemen Mutu</a></li>
                         <li><a href="/web/kemitraan">Kemitraan Industri</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pelayanan Publik</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pelayanan Publik</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/web/maklumat-pelayanan">Maklumat Pelayanan</a></li>
                                 <li><a href="/web/standar-pelayanan">Standar Pelayanan</a></li>
@@ -88,7 +78,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >PPID</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">PPID</a>
                             <ul class="dropdown-menu">
                                 <li><a href="/web/ppid">Tentang PPID</a></li>
                                 <li><a href="/web/permohonan-informasi">Permohonan Informasi</a></li>
@@ -105,7 +95,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Informasi</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Informasi</a>
                     <ul class="dropdown-menu">
                         <li><a href="/web/pengumuman">Pengumuman</a></li>
                         <li><a href="/web/berita">Berita Terbaru</a></li>
@@ -121,7 +111,7 @@
                     </ul>
                 </li> -->
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Pengaduan</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pengaduan</a>
                     <ul class="dropdown-menu">
                         <li><a href="https://www.lapor.go.id/" target="_blank">SP4N-LAPOR!</a></li>
                         <li><a href="/web/whistleblowing-system">Whistleblowing System</a></li>

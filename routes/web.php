@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KejuruanController;
+use App\Http\Controllers\PengumumanController;
+use App\Models\Berita;
+use App\Models\Kejuruan;
+use App\Models\Pengumuman;
+use App\Models\Testimoni;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +24,65 @@ Route::get('/', function () {
     return view('halamanutama');
 });
 
+// Route::get('/web', function () {
+//     $kejuruan = Kejuruan::all();
+
+//     return view('web.masterweb', compact('kejuruan'));
+// });
+
+Route::get('/web/kejuruan/{slug}', [KejuruanController::class, 'show'])
+    ->name('kejuruan.show');
+
+Route::get('/web/berita/{slug}', [BeritaController::class, 'show'])
+    ->name('berita.show');
+
+//     Route::get('/web/berita', function () {
+//     $berita = Berita::all();
+//     return view('web.informasi-berita', [
+//         "title" => "Berita",
+//         "berita" => $berita
+//     ]);
+// });
+
+Route::get('/web/pengumuman/{slug}', [PengumumanController::class, 'show'])
+    ->name('pengumuman.show');
+
 /* WEBSITE */
 
 Route::get('/web', function () {
+    $kejuruan = Kejuruan::all();
+    
+    $berita = Berita::where('status', 'terbit')
+        ->latest('tanggal_berita')
+        ->limit(3)
+        ->get()
+        ->map(function($item) {
+            $item->type = 'Berita';
+            $item->date = $item->tanggal_berita;
+            $item->route_name = 'berita.show';
+            return $item;
+        });
+
+    $pengumuman = Pengumuman::where('status', 'aktif')
+        ->latest('tanggal_pengumuman')
+        ->limit(3)
+        ->get()
+        ->map(function($item) {
+            $item->type = 'Pengumuman';
+            $item->date = $item->tanggal_pengumuman;
+            $item->route_name = 'pengumuman.show';
+            return $item;
+        });
+    
+    $informasi = $berita->concat($pengumuman)->sortByDesc('date')->take(3);
+    
+    $testimoni = Testimoni::latest()->get();
+
     return view('web.indexweb', [
-        "title" => "Website Resmi BPVP Sorong"
+        "title" => "Website Resmi BPVP Sorong",
+        "kejuruan" => $kejuruan,
+        "informasi" => $informasi,
+        "testimoni" => $testimoni
     ]);
 });
 
@@ -197,14 +258,28 @@ Route::get('/web/survey-kepuasan-masyarakat', function () {
 
 
 Route::get('/web/pengumuman', function () {
+    $pengumuman = Pengumuman::where('status', 'aktif')
+        ->latest('tanggal_pengumuman')
+        ->get();
+
     return view('web.informasi-pengumuman', [
-        "title" => "Pengumuman"
+        "title" => "Pengumuman",
+        "pengumuman" => $pengumuman
     ]);
 });
 
+
+
+
+
 Route::get('/web/berita', function () {
+    $berita = Berita::where('status', 'terbit')
+        ->latest('tanggal_berita')
+        ->get();
+
     return view('web.informasi-berita', [
-        "title" => "Berita"
+        "title" => "Berita",
+        "berita" => $berita
     ]);
 });
 

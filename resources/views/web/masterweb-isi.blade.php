@@ -59,15 +59,18 @@
     <header id="home">
 
         @include('web.navbarweb')
+        {{-- @include('web.navbarweb', ['listkejuruan' => $listkejuruan]) --}}
 
     </header>
     <!-- End Header -->
 
     
     <div class="spasi" style="background-color:#12547f; height:90px;"></div>
-    <div class="breadcrumb-area shadow dark bg-fixed text-center text-light" style="background-image: url({{ asset('img') }}/web/breadcrumb.jpg);">
-        @yield('bread')
-    </div>
+     @if (!request()->is('web/berita/*') && !request()->is('web/pengumuman/*'))
+        <div class="breadcrumb-area shadow dark bg-fixed text-center text-light" style="background-image: url({{ asset('img') }}/web/breadcrumb.jpg);">
+            @yield('bread')
+        </div>
+    @endif
 
     
     @yield('konten')

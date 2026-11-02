@@ -6963,3 +6963,11 @@ footer .footer-bottom .link li a {
   background: url(assets/img/preloader.gif) center no-repeat #fff;
   text-align: center;
 }
+
+.line-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

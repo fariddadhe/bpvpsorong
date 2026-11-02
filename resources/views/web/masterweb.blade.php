@@ -59,6 +59,7 @@
     <header id="home">
 
         @include('web.navbarweb')
+        {{-- @include('web.navbarweb', ['listkejuruan' => $listkejuruan]) --}}
 
     </header>
     <!-- End Header -->
